@@ -22,16 +22,24 @@
 	<body>
 		<div class="container">
 			<h1>ttmp4</h1>
+			{% with messages = get_flashed_messages() %}
+			{% if messages %}
+			<div class="msg">
+				<strong>Error</strong>
+				{{ messages|join("; ") }}
+			</div>
+			{% endif %}
+			{% endwith %}
 			<form>
 				<input type=text name=url id=url style="width:50%" oninput="input(this)"><br>
 				<a href="https://tt.home.aly.pet/" id="copy_url">https://tt.home.aly.pet/?url=<span id="display_url"></span></a>
 				<input type=submit>
 			</form>
-			<div style="display:flex;flex-wrap:wrap;gap:10px">
+<!--			<div style="display:flex;flex-wrap:wrap;gap:10px">
 				{% for l in listing %}
 					<div style="flex:1"><a href="{{ l }}.mp4"><img src="{{ l }}.webp"></a></div>
 				{% endfor %}
-			</div>
+			</div> -->
 		</div>
 		<a class="github-fork-ribbon" href="https://github.com/alyssadev/ttmp4" data-ribbon="Fork me on GitHub" title="Fork me on GitHub">Fork me on GitHub</a>
 	</body>
