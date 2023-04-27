@@ -12,7 +12,10 @@ app = Flask(__name__)
 def index():
     url = request.args.get("url")
     if not url:
-        return send_from_directory("static", "index.html")
+        listing = Popen(["bash", "-c", "ls -tc static/*.webp"], stdout=PIPE)
+        out, err = listing.communicate()
+        out = out.decode("utf-8").strip()
+        return render_template("index.html", listing=[l[:-5] for l in out.split()])
     if url.startswith("https://vm.tiktok.com/"):
         curl = Popen(["curl", url], stdout=PIPE, stderr=PIPE)
         out, err = curl.communicate()
@@ -23,7 +26,7 @@ def index():
         url = url[:-1]
     if not isfile("static/" + url.split("/")[-1] + ".mp4"):
         print(url)
-        ytdl = Popen(["yt-dlp", "-S", "codec:h264", "-o", "static/%(display_id)s.%(ext)s", url], stdout=PIPE)
+        ytdl = Popen(["yt-dlp", "-S", "codec:h264", "-o", "static/%(display_id)s.%(ext)s", "--write-thumbnail", url], stdout=PIPE)
         out, err = ytdl.communicate()
         code = ytdl.wait()
         if code != 0:

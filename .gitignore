@@ -1,5 +1,5 @@
 *
 !.gitignore
 !ttmp4.py
-!static/
-!static/index.html
+!templates/
+!templates/index.html

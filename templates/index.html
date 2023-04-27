@@ -27,6 +27,11 @@
 				<a href="https://tt.home.aly.pet/" id="copy_url">https://tt.home.aly.pet/?url=<span id="display_url"></span></a>
 				<input type=submit>
 			</form>
+			<div style="display:flex">
+				{% for l in listing %}
+					<div style="flex:1"><a href="{{ l }}.mp4"><img src="{{ l }}.webp"></a></div>
+				{% endfor %}
+			</div>
 		</div>
 		<a class="github-fork-ribbon" href="https://github.com/alyssadev/ttmp4" data-ribbon="Fork me on GitHub" title="Fork me on GitHub">Fork me on GitHub</a>
 	</body>
