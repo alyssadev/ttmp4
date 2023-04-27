@@ -10,7 +10,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
-    url = request.args.get("url")
+    url = request.args.get("url").split("?")[0]
     if not url:
         listing = Popen(["bash", "-c", "ls -tc static/*.webp"], stdout=PIPE)
         out, err = listing.communicate()
