@@ -27,7 +27,7 @@
 				<a href="https://tt.home.aly.pet/" id="copy_url">https://tt.home.aly.pet/?url=<span id="display_url"></span></a>
 				<input type=submit>
 			</form>
-			<div style="display:flex">
+			<div style="display:flex;flex-wrap:wrap;gap:10px">
 				{% for l in listing %}
 					<div style="flex:1"><a href="{{ l }}.mp4"><img src="{{ l }}.webp"></a></div>
 				{% endfor %}

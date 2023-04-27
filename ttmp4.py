@@ -15,12 +15,12 @@ def index():
         listing = Popen(["bash", "-c", "ls -tc static/*.webp"], stdout=PIPE)
         out, err = listing.communicate()
         out = out.decode("utf-8").strip()
-        return render_template("index.html", listing=[l[:-5] for l in out.split()])
-    if url.startswith("https://vm.tiktok.com/"):
+        return render_template("index.html", listing=[l[:-5] for l in out.split()][:100])
+    if url.startswith("https://vm.tiktok.com/") or url.startswith("https://vt.tiktok.com/"):
         curl = Popen(["curl", url], stdout=PIPE, stderr=PIPE)
         out, err = curl.communicate()
         url = Soup(out).find("a")["href"].split("?")[0]
-    if not match("https://www.tiktok.com/@\w+?/video/\d+", url):
+    if not match("https://www.tiktok.com/@[a-zA-Z0-9\._]+?/video/\d+", url):
         return "bad url"
     if url[-1] == "/":
         url = url[:-1]
