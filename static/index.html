@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<title>tt.home.aly.pet</title>
+
+		<link href="//mincss.com/entireframework.min.css" rel="stylesheet" type="text/css">
+		<script>
+			const url = "https://tt.home.aly.pet"
+			function input(e) {
+				document.getElementById('display_url').textContent = e.value
+				if (e.value === "") {
+					document.getElementById('copy_url').href = url
+					return
+				}
+				document.getElementById("copy_url").href = url + "?url=" + e.value
+			}
+		</script>
+	</head>
+	<body>
+		<div class="container">
+			<h1>ttmp4</h1>
+			<form>
+				<input type=text name=url id=url style="width:50%" oninput="input(this)"><br>
+				<a href="https://tt.home.aly.pet/" id="copy_url">https://tt.home.aly.pet/?url=<span id="display_url"></span></a>
+				<input type=submit>
+			</form>
+		</div>
+	</body>
+	<script>
+	(function() {
+		input(document.getElementById("url"))
+	})()
+	</script>
+</html>
+
