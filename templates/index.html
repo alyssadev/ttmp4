@@ -8,16 +8,29 @@
 
 		<link href="//mincss.com/entireframework.min.css" rel="stylesheet" type="text/css">
 		<script>
-			const url = "https://tt.home.aly.pet"
+			function get_root() {
+				return window.location.protocol + "//" + window.location.hostname + "/"
+			}
 			function input(e) {
 				document.getElementById('display_url').textContent = e.value
 				if (e.value === "") {
-					document.getElementById('copy_url').href = url
+					document.getElementById('copy_url').href = get_root()
+					document.getElementById("copy_url").style.display = "none"
 					return
+				} else {
+					document.getElementById("copy_url").style.display = "initial"
 				}
-				document.getElementById("copy_url").href = url + "?url=" + e.value
+				document.getElementById("copy_url").href = get_root() + "?url=" + e.value
 			}
 		</script>
+		<style>
+			#copy_url {
+				display: none;
+			}
+			img {
+				max-height: 300px;
+			}
+		</style>
 	</head>
 	<body>
 		<div class="container">
@@ -32,14 +45,16 @@
 			{% endwith %}
 			<form>
 				<input type=text name=url id=url style="width:50%" oninput="input(this)"><br>
-				<a href="https://tt.home.aly.pet/" id="copy_url">https://tt.home.aly.pet/?url=<span id="display_url"></span></a>
 				<input type=submit>
+				<a href="/" id="copy_url">
+					<script>document.write(get_root());</script>?url=<span id="display_url"></span>
+				</a>
 			</form>
-<!--			<div style="display:flex;flex-wrap:wrap;gap:10px">
+			<div style="display:flex;flex-wrap:wrap;gap:10px">
 				{% for l in listing %}
-					<div style="flex:1"><a href="{{ l }}.mp4"><img src="{{ l }}.webp"></a></div>
+					<div><a href="{{ l }}.mp4"><img src="{{ l }}.webp"></a></div>
 				{% endfor %}
-			</div> -->
+			</div>
 		</div>
 		<a class="github-fork-ribbon" href="https://github.com/alyssadev/ttmp4" data-ribbon="Fork me on GitHub" title="Fork me on GitHub">Fork me on GitHub</a>
 	</body>
