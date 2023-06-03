@@ -50,11 +50,13 @@
 					<script>document.write(get_root());</script>?url=<span id="display_url"></span>
 				</a>
 			</form>
+			{% if thumbs %}
 			<div style="display:flex;flex-wrap:wrap;gap:10px">
 				{% for l in listing %}
 					<div><a href="{{ l }}.mp4"><img src="{{ l }}.webp"></a></div>
 				{% endfor %}
 			</div>
+			{% endif %}
 		</div>
 		<a class="github-fork-ribbon" href="https://github.com/alyssadev/ttmp4" data-ribbon="Fork me on GitHub" title="Fork me on GitHub">Fork me on GitHub</a>
 	</body>
